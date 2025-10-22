@@ -12,7 +12,7 @@ export default function Page() {
   const handleJoinLobby = () => {
     setTransitioning(true)
     setTimeout(() => {
-      router.push('/ctb')
+      router.push('/join-lobby')
     }, 1000)
   }
 
