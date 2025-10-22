@@ -18,12 +18,12 @@ const Page = () => {
 
       <div className="absolute inset-0 flex flex-col pointer-events-none gap-6 p-12">
         {/* ===== Top Race Section ===== */}
-        <div className="h-[40%] flex items-center justify-center bg-black rounded-md shadow-[0_0_40px_10px_#61C9C8C4] overflow-hidden">
+        <div className="h-[40%] flex items-center justify-center bg-transparent">
             <Race />
         </div>
 
         {/* ===== Bottom Cards Section ===== */}
-        <div className="h-[60%] flex items-center justify-center bg-black rounded-md pl-8 shadow-[0_0_40px_10px_#71193F] overflow-hidden">
+        <div className="h-[60%] flex items-center justify-center bg-black shadow-[0_0_40px_10px_#71193F] overflow-hidden border-4 border-[#222]" style={{ borderRadius: "0px", imageRendering: "pixelated", imageRendering: "crisp-edges" }}>
           <Cards />
         </div>
       </div>
