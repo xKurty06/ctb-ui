@@ -143,20 +143,23 @@ export default function Page() {
           squareSize={80}
           hoverFillColor="#222"
         />
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <HeroPageContent />
-        </div>
-        
-        {/* Join Lobby Button */}
-        <div className="absolute bottom-12 left-0 right-0 flex justify-center pointer-events-auto">
-          <button
-            onClick={handleJoinLobby}
-            className="start-button px-10 py-3 text-[#39FF14] font-bold text-lg tracking-wider
-            transition-all duration-300"
-            style={{ textShadow: '0 0 5px rgba(57, 255, 20, 0.5)' }}
-          >
-            START
-          </button>
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-16">
+          {/* Move content up by adding negative margin */}
+          <div className="mt-[-3%] pointer-events-none max-w-[1200px] w-full mx-auto flex justify-center">
+            <HeroPageContent />
+          </div>
+          
+          {/* Join Lobby Button */}
+          <div className="pointer-events-auto flex justify-center">
+            <button
+              onClick={handleJoinLobby}
+              className="start-button px-10 py-3 text-[#39FF14] font-bold text-lg tracking-wider
+              transition-all duration-300"
+              style={{ textShadow: '0 0 5px rgba(57, 255, 20, 0.5)' }}
+            >
+              START
+            </button>
+          </div>
         </div>
       </div>
       
