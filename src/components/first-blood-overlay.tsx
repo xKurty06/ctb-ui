@@ -92,17 +92,6 @@ const FirstBloodOverlay: React.FC<FirstBloodOverlayProps> = ({ isVisible, teamNa
         
         {/* Main overlay content */}
         <div className="relative z-10 flex flex-col items-center justify-center">
-          {/* Team info if available */}
-          {teamName && (
-            <div 
-              className={`mb-4 pixel-card bg-black text-white px-6 py-3 text-lg font-bold transition-all duration-300 ${
-                isAnimating ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-              }`}
-              style={{ transitionDelay: '200ms' }}
-            >
-              {teamName}
-            </div>
-          )}
           
           {/* Main FIRST BLOOD text */}
           <div 
