@@ -32,6 +32,101 @@ export default function Page() {
           image-rendering: pixelated;
           image-rendering: crisp-edges;
         }
+
+        @keyframes buttonGlow {
+          0%, 100% {
+            box-shadow: 
+              0 0 5px rgba(57, 255, 20, 0.5),
+              0 0 10px rgba(57, 255, 20, 0.3),
+              0 0 15px rgba(57, 255, 20, 0.1),
+              inset 0 0 2px rgba(57, 255, 20, 0.2);
+          }
+          50% {
+            box-shadow: 
+              0 0 10px rgba(57, 255, 20, 0.7),
+              0 0 20px rgba(57, 255, 20, 0.5),
+              0 0 30px rgba(57, 255, 20, 0.3),
+              inset 0 0 5px rgba(57, 255, 20, 0.4);
+          }
+        }
+
+        .start-button {
+          position: relative;
+          background: rgba(57, 255, 20, 0.02);
+          border: 1px solid #39FF14;
+          overflow: hidden;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          animation: buttonGlow 2s ease-in-out infinite;
+        }
+
+        .start-button::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: rgba(57, 255, 20, 0.1);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+
+        .start-button::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(57, 255, 20, 0.2) 50%,
+            transparent 100%
+          );
+          transform: translateX(-100%);
+          transition: transform 0.5s ease;
+        }
+
+        .start-button:hover {
+          border-color: rgba(57, 255, 20, 1);
+          background: rgba(57, 255, 20, 0.1);
+          box-shadow: 
+            0 0 15px rgba(57, 255, 20, 0.8),
+            0 0 30px rgba(57, 255, 20, 0.6),
+            0 0 45px rgba(57, 255, 20, 0.4),
+            inset 0 0 10px rgba(57, 255, 20, 0.4);
+          text-shadow: 0 0 8px rgba(57, 255, 20, 0.8);
+          letter-spacing: 0.2em;
+        }
+
+        .start-button:hover::before {
+          opacity: 0.3;
+        }
+
+        .start-button:hover::after {
+          transform: translateX(100%);
+        }
+
+        .start-button:active {
+          transform: scale(0.96);
+          border-color: rgba(57, 255, 20, 1);
+        }
+
+        @keyframes glitch {
+          0% {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+          }
+          2%, 4%, 6% {
+            clip-path: polygon(0 10%, 100% 10%, 100% 90%, 0 90%);
+            transform: translate(-2px);
+          }
+          3%, 5%, 7% {
+            clip-path: polygon(0 10%, 100% 10%, 100% 90%, 0 90%);
+            transform: translate(2px);
+          }
+          8% {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            transform: translate(0);
+          }
+        }
+
+        .start-button:hover span {
+          animation: glitch 3s infinite;
+        }
       `}</style>
 
       <div 
@@ -56,9 +151,11 @@ export default function Page() {
         <div className="absolute bottom-12 left-0 right-0 flex justify-center pointer-events-auto">
           <button
             onClick={handleJoinLobby}
-            className="pixel-card px-8 py-4 bg-white/70 text-black font-bold text-lg tracking-wide hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl"
+            className="start-button px-10 py-3 text-[#39FF14] font-bold text-lg tracking-wider
+            transition-all duration-300"
+            style={{ textShadow: '0 0 5px rgba(57, 255, 20, 0.5)' }}
           >
-            Start
+            START
           </button>
         </div>
       </div>
