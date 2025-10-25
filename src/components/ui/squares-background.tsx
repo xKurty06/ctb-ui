@@ -37,8 +37,11 @@ export function Squares({
     const ctx = canvas.getContext("2d")
     if (!ctx) return
 
-    // Set canvas background
-    canvas.style.background = backgroundColor
+  // Set canvas background and allow pointer events to pass through (decorative canvas)
+  canvas.style.background = backgroundColor
+  // Make the canvas non-interactive so UI elements on top remain clickable.
+  // We'll listen for mouse events on `window` instead so hover highlights still work.
+  canvas.style.pointerEvents = 'none'
 
     const resizeCanvas = () => {
       canvas.width = canvas.offsetWidth
@@ -147,10 +150,10 @@ export function Squares({
       setHoveredSquare(null)
     }
 
-    // Event listeners
+    // Event listeners - listen on window so the canvas can be pointer-events: none
     window.addEventListener("resize", resizeCanvas)
-    canvas.addEventListener("mousemove", handleMouseMove)
-    canvas.addEventListener("mouseleave", handleMouseLeave)
+    window.addEventListener("mousemove", handleMouseMove)
+    window.addEventListener("mouseout", handleMouseLeave)
 
     // Initial setup
     resizeCanvas()
@@ -159,8 +162,8 @@ export function Squares({
     // Cleanup
     return () => {
       window.removeEventListener("resize", resizeCanvas)
-      canvas.removeEventListener("mousemove", handleMouseMove)
-      canvas.removeEventListener("mouseleave", handleMouseLeave)
+      window.removeEventListener("mousemove", handleMouseMove)
+      window.removeEventListener("mouseout", handleMouseLeave)
       if (requestRef.current) {
         cancelAnimationFrame(requestRef.current)
       }
