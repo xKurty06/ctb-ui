@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { Squares } from "@/components/ui/squares-background"
 import HeroPageContent from "@/components/hero-page"
@@ -8,8 +8,19 @@ import HeroPageContent from "@/components/hero-page"
 export default function Page() {
   const router = useRouter()
   const [transitioning, setTransitioning] = useState(false)
+  const clickAudioRef = useRef<HTMLAudioElement | null>(null)
 
   const handleJoinLobby = () => {
+    // play click sound (user interaction allows playback)
+    try {
+      if (clickAudioRef.current) {
+        clickAudioRef.current.currentTime = 0
+        void clickAudioRef.current.play()
+      }
+    } catch (e) {
+      // ignore play errors (e.g., if blocked)
+    }
+
     setTransitioning(true)
     setTimeout(() => {
       router.push('/join-lobby')
@@ -136,6 +147,8 @@ export default function Page() {
             : 'scale-100 opacity-100 blur-0'
         }`}
       >
+        {/* Preload UI click sound */}
+        <audio ref={clickAudioRef} src="/sound_effects/ui-start-click.mp3" preload="auto" />
         <Squares
           direction="down"
           speed={0.5}
