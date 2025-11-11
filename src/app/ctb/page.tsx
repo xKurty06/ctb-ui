@@ -7,6 +7,23 @@ import FirstBloodOverlay from '@/components/first-blood-overlay'
 import TimesUpOverlay from '@/components/times-up-overlay'
 import CongratulationsOverlay from '@/components/congratulations-overlay'
 
+<style>{`
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .page-enter {
+    animation: slideIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+`}</style>
+
 const Page = () => {
   const [showFirstBlood, setShowFirstBlood] = useState(false);
   const [firstBloodTeam, setFirstBloodTeam] = useState<string | undefined>();
@@ -46,7 +63,7 @@ const Page = () => {
   };
 
   return (
-    <div className="relative w-full h-screen transition-opacity duration-500">
+    <div className="relative w-full h-screen transition-opacity duration-500 page-enter">
       <Squares
         direction="diagonal"
         speed={0.5}
