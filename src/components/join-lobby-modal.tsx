@@ -128,10 +128,6 @@ export default function TeamJoin() {
           animation: colorPulse 2s ease-in-out infinite;
         }
 
-        .lobby-btn:hover {
-          transform: scale(1.08);
-          box-shadow: 0 8px 25px rgba(74, 155, 150, 0.25);
-        }
 
         .join-btn {
           animation: slideIn 0.8s ease-out 0.25s backwards;
