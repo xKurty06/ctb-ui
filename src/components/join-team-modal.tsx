@@ -67,12 +67,32 @@ export default function TeamJoin() {
           image-rendering: pixelated;
           image-rendering: crisp-edges;
         }
+
+        @keyframes slideIn {
+          from {
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+
+        .modal-enhanced {
+          animation: slideIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+          background: #0a0a0a;
+          box-shadow: 0 0 30px rgba(74, 155, 150, 0.5);
+          image-rendering: pixelated;
+          image-rendering: crisp-edges;
+          border-radius: 0;
+        }
       `}</style>
 
-      <div 
-        className={`min-h-[70vh] min-w-[70vw] flex items-center justify-center py-12 bg-black transition-all duration-1000 relative shadow-[0_0_100px_30px_#82828240] ${
-          transitioning 
-            ? 'scale-95 opacity-0 blur-lg' 
+      <div
+        className={`min-h-[70vh] min-w-[70vw] flex items-center justify-center py-12 backdrop-blur-md transition-all duration-1000 modal-enhanced relative ${
+          transitioning
+            ? 'scale-95 opacity-0 blur-lg'
             : 'scale-100 opacity-100 blur-0'
         }`}
       >

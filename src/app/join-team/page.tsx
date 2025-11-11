@@ -9,10 +9,10 @@ const page = () => {
       <Squares
         direction="down"
         speed={0.5}
-        borderColor="#D73078"
+        borderColor="#7A3456"
         squareSize={80}
-        hoverFillColor="#222"
-        backgroundColor="#A4245B"
+        hoverFillColor="#2a2530"
+        backgroundColor="#1C1420"
       />
         <div className="absolute inset-0 flex items-center justify-center pointer-events-auto">
             <JoinTeamModal />
